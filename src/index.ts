@@ -3,3 +3,6 @@
  * @namespace Title
  * @description Index
  */
+
+export * from "./title";
+
