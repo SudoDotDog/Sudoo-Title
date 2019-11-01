@@ -4,20 +4,27 @@
  * @description Title
  */
 
+import { getDefaultSetTitleFunction, getDefaultTitle, SetTitleFunction } from "./declare";
+
 export class Title {
 
-    public static create(init: string = document.title): Title {
+    public static create(
+        init: string = getDefaultTitle(),
+        setTitleFunction: SetTitleFunction = getDefaultSetTitleFunction(),
+    ): Title {
 
-        return new Title(init);
+        return new Title(init, setTitleFunction);
     }
 
     private _init: string;
+    private _setTitleFunction: SetTitleFunction;
 
     private _base: string | null;
 
-    private constructor(init: string) {
+    private constructor(init: string, setTitleFunction: SetTitleFunction) {
 
         this._init = init;
+        this._setTitleFunction = setTitleFunction;
 
         this._base = null;
     }
@@ -43,13 +50,14 @@ export class Title {
 
     public setTitle(...args: string[]): this {
 
-        document.title = this._buildTitle(args);
+        const title: string = this._buildTitle(args);
+        this._setTitleFunction(title);
         return this;
     }
 
     public restoreTitle(): this {
 
-        document.title = this._init;
+        this._setTitleFunction(this._init);
         return this;
     }
 
