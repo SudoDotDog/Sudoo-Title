@@ -64,7 +64,7 @@ export class Title {
     private _buildTitle(args: string[]): string {
 
         if (this._base) {
-            args.reduce((previous: string, current: string) => {
+            return args.reduce((previous: string, current: string) => {
                 return previous.replace("{}", current);
             }, this._base);
         }
