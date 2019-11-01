@@ -59,7 +59,7 @@ describe('Given {Title} Class', (): void => {
         let currentTitle: string = chance.string();
 
         const title: Title = Title.create(currentTitle, (next: string) => currentTitle = next);
-        title.setBase('{} - Title');
+        title.setLevelBase('{} - Title', 1);
 
         const newTitle: string = chance.string();
         title.setTitle(newTitle);
@@ -72,12 +72,13 @@ describe('Given {Title} Class', (): void => {
         let currentTitle: string = chance.string();
 
         const title: Title = Title.create(currentTitle, (next: string) => currentTitle = next);
-        title.setBase('{} | {} - Title');
+        title.setLevelBase('{} - Title', 1);
+        title.setLevelBase('{} | {} - Title', 2);
 
         const newTitle: string = chance.string();
         title.setTitle(newTitle);
 
-        expect(currentTitle).to.be.equal(`${newTitle} | {} - Title`);
+        expect(currentTitle).to.be.equal(`${newTitle} - Title`);
 
         title.setTitle(newTitle, newTitle);
 

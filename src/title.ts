@@ -19,19 +19,18 @@ export class Title {
     private _init: string;
     private _setTitleFunction: SetTitleFunction;
 
-    private _base: string | null;
+    private readonly _levelBaseMap: Map<number, string>;
+    private readonly _baseMap: Map<string, string>;
 
     private constructor(init: string, setTitleFunction: SetTitleFunction) {
 
         this._init = init;
         this._setTitleFunction = setTitleFunction;
 
-        this._base = null;
+        this._levelBaseMap = new Map<number, string>();
+        this._baseMap = new Map<string, string>();
     }
 
-    public get base(): string {
-        return this._base || '';
-    }
     public get init(): string {
         return this._init;
     }
@@ -42,15 +41,28 @@ export class Title {
         return this;
     }
 
-    public setBase(base: string): this {
+    public setLevelBase(base: string, level: number): this {
 
-        this._base = base;
+        this._levelBaseMap.set(level, base);
         return this;
     }
 
     public setTitle(...args: string[]): this {
 
-        const title: string = this._buildTitle(args);
+        const title: string = this._buildLevelTitle(args);
+        this._setTitleFunction(title);
+        return this;
+    }
+
+    public setTitleByBase(base: string, ...args: string[]): this {
+
+        const title: string = this._buildBaseTitle(args, base);
+        this._setTitleFunction(title);
+        return this;
+    }
+
+    public replaceTitle(title: string): this {
+
         this._setTitleFunction(title);
         return this;
     }
@@ -61,13 +73,30 @@ export class Title {
         return this;
     }
 
-    private _buildTitle(args: string[]): string {
+    private _buildBaseTitle(args: string[], base: string): string {
 
-        if (this._base) {
+        if (this._baseMap.get(base)) {
+            const baseText: string = this._baseMap.get(base) as string;
             return args.reduce((previous: string, current: string) => {
                 return previous.replace("{}", current);
-            }, this._base);
+            }, baseText);
         }
+        return this._buildFallback(args);
+    }
+
+    private _buildLevelTitle(args: string[]): string {
+
+        const level: number = args.length;
+        if (this._levelBaseMap.get(level)) {
+            const baseText: string = this._levelBaseMap.get(level) as string;
+            return args.reduce((previous: string, current: string) => {
+                return previous.replace("{}", current);
+            }, baseText);
+        }
+        return this._buildFallback(args);
+    }
+
+    private _buildFallback(args: string[]): string {
 
         return args.join(' ');
     }
