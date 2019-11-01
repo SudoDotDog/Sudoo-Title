@@ -25,6 +25,18 @@ describe('Given {Title} Class', (): void => {
         expect(currentTitle).to.be.equal(newTitle);
     });
 
+    it('Should be able to set multiple title', (): void => {
+
+        let currentTitle: string = chance.string();
+
+        const title: Title = Title.create(currentTitle, (next: string) => currentTitle = next);
+
+        const newTitle: string = chance.string();
+        title.setTitle(newTitle, newTitle);
+
+        expect(currentTitle).to.be.equal(`${newTitle} ${newTitle}`);
+    });
+
     it('Should be able to restore title', (): void => {
 
         const init: string = chance.string();
