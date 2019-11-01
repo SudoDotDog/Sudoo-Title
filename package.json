@@ -1,0 +1,43 @@
+{
+  "name": "@sudoo/title",
+  "version": "1.0.0",
+  "description": ":exclamation: Title Chain",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SudoDotDog/Sudoo-Title.git"
+  },
+  "author": "WMXPY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SudoDotDog/Sudoo-Title/issues"
+  },
+  "homepage": "https://github.com/SudoDotDog/Sudoo-Title#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@sudoo/io": "^1.6.1",
+    "@sudoo/mock": "^1.2.0",
+    "@sudoo/triforce": "^1.9.0"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "instrument": true,
+    "reporter": [
+      "json",
+      "text-summary"
+    ],
+    "report-dir": "coverage",
+    "require": [
+      "./test/tshook.js"
+    ],
+    "sourceMap": true
+  }
+}
