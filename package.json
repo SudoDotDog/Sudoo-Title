@@ -1,6 +1,6 @@
 {
   "name": "@sudoo/title",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": ":exclamation: Title Chain",
   "main": "index.js",
   "directories": {
