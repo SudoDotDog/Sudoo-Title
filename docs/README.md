@@ -6,3 +6,11 @@
 [![downloads](https://img.shields.io/npm/dm/@sudoo/title.svg)](https://www.npmjs.com/package/@sudoo/title)
 
 :exclamation: Title Chain
+
+## Install
+
+```sh
+yarn add @sudoo/title
+# Or
+npm install @sudoo/title --save
+```
