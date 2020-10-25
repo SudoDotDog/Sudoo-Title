@@ -14,3 +14,17 @@ yarn add @sudoo/title
 # Or
 npm install @sudoo/title --save
 ```
+
+## Usage
+
+```ts
+import { Title } from "@sudoo/title";
+
+const title: Title = Title.create("MyIndex");
+
+// On page changes (EX: page component did mount)
+title.setTitle("SubPageTitle");
+
+// On page restored (EX: page component did unmount)
+title.restoreTitle();
+```
