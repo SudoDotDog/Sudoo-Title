@@ -22,9 +22,12 @@ import { Title } from "@sudoo/title";
 
 const title: Title = Title.create("MyIndex");
 
+// Options: On page init (EX: index component did mount)
+title.restoreTitle(); // Title > "MyIndex"
+
 // On page changes (EX: page component did mount)
-title.setTitle("SubPageTitle");
+title.setTitle("SubPageTitle"); // Title > "SubPageTitle"
 
 // On page restored (EX: page component did unmount)
-title.restoreTitle();
+title.restoreTitle(); // Title > "MyIndex"
 ```
