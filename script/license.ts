@@ -26,7 +26,5 @@ const appPackage: any = {
     license: parent.license,
     bugs: parent.bugs,
     homepage: parent.homepage,
-    dependencies: parent.dependencies,
-    peerDependencies: parent.peerDependencies,
 };
 Fs.writeFileSync(Path.join(appPath, 'package.json'), JSON.stringify(appPackage, null, 2), 'utf8');
