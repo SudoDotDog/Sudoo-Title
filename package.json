@@ -1,7 +1,7 @@
 {
   "name": "@sudoo/title",
   "version": "1.0.2",
-  "description": ":exclamation: Title Chain",
+  "description": "Title Chain",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SudoDotDog/Sudoo-Title.git"
